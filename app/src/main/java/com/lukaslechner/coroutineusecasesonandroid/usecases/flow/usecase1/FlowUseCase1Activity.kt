@@ -38,6 +38,7 @@ class FlowUseCase1Activity : BaseActivity() {
                 binding.progressBar.setVisible()
                 binding.recyclerView.setGone()
             }
+
             is UiState.Success -> {
                 binding.recyclerView.setVisible()
                 binding.lastUpdateTime.text =
@@ -45,6 +46,7 @@ class FlowUseCase1Activity : BaseActivity() {
                 adapter.stockList = uiState.stockList
                 binding.progressBar.setGone()
             }
+
             is UiState.Error -> {
                 toast(uiState.message)
                 binding.progressBar.setGone()
