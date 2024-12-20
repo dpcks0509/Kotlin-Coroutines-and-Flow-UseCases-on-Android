@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.lukaslechner.coroutineusecasesonandroid.base.BaseViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -52,7 +52,9 @@ class FlowUseCase2ViewModel(
             stockList.filter { stock ->
                 stock.country == "United States"
             }
-        }.map { stockList ->
+        }
+        .cancellable()
+        .map { stockList ->
             stockList.filter { stock ->
                 stock.name != "Apple" && stock.name != "Microsoft"
             }
